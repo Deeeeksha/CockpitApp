@@ -6,7 +6,7 @@ pipeline{
     }
     environment{
         
-        image_tag='dipayanp007/capstone:${GIT_COMMIT}-build-${BUILD_NUMBER}'
+        image_tag='abcd'
         cred=credentials('cockpitcred')
         
     }
@@ -17,15 +17,15 @@ pipeline{
         stage("Packaging, pushing to DockerHub and deploying to Kubernetes Cluster")
         {
             steps{
-                sh 'docker build -t $image_tag'
+                sh "docker build -t $image_tag"
             }
         }
         stage("push image to github repo")
         {
             steps{
-                sh ''' 
+                sh """ 
                 echo $cred_PSW | docker login docker.pkg.github.com -u $cred_USR
-                '''
+                """
             } 
         }
     }
