@@ -24,7 +24,7 @@ pipeline{
         {
             steps{
                 sh """ 
-                echo $cred_PSW | docker login docker.pkg.github.com -u $cred_USR
+                echo $cred_PSW | docker login docker.pkg.github.com -u $cred_USR --password-stdin
                 """
             } 
         }
