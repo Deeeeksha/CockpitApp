@@ -6,7 +6,7 @@ pipeline{
     }
     environment{
         
-        image_tag='abcd'
+        image_tag='docker.pkg.github.com/Deeeeksha/cockpitapp:${GIT_COMMIT}'
         cred=credentials('cockpitcred')
         
     }
@@ -24,7 +24,8 @@ pipeline{
         {
             steps{
                 sh """ 
-                echo $cred_PSW | docker login docker.pkg.github.com -u $cred_USR --password-stdin
+                echo $cred_PSW | docker login docker.pkg.github.com -u $cred_USR --password-stdin 
+                docker push $image_tag
                 """
             } 
         }
